@@ -146,6 +146,11 @@ set wrap "Wrap lines
 " Smart way to move between tabs
 map <A-h> gT
 map <A-l> gt
+if has("gui_running")
+  imap <A-a> <Esc>
+else
+  imap jj <Esc>
+endif
 
 " Smart way to move between splitted windows
 map <C-h> <C-w>h
@@ -228,9 +233,6 @@ let g:NERDTreeWinSize = 55
 
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-" ESC
-imap <A-a> <Esc>
 
 " Autocomplete
 let g:rubycomplete_buffer_loading = 1

@@ -86,8 +86,13 @@ set tm=500
 syntax enable
 
 set term=gnome-256color 
-colorscheme railscasts
-set background=dark
+if has("gui_running")
+  colorscheme solarized
+  set background=light
+else
+  colorscheme railscasts
+  set background=dark
+endif
 
 " Set extra options when running in GUI mode
 if has("gui_running")

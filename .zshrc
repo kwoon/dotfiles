@@ -43,6 +43,7 @@ export TERM=xterm-256color
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git rails lol debian bundler zeus vagrant)
 
+export EDITOR=vim
 source $ZSH/oh-my-zsh.sh
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 

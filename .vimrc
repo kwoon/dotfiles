@@ -1,5 +1,6 @@
 call pathogen#infect()
 set nocompatible
+set shell=/bin/zsh
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -21,7 +22,6 @@ let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -95,6 +95,9 @@ if has("gui_running")
   set guioptions+=e
   set t_Co=256
   set guitablabel=%M\ %t
+  "set guifont=Monospace\ 10
+  "set guifont=Ubuntu\ Mono\ 12
+  "set guifont=SourceCodePro-Light\ 14
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -264,6 +267,9 @@ au BufNewFile,BufRead *.cap setlocal ft=ruby
 au BufNewFile,BufRead Capfile.* setlocal ft=ruby
 au BufNewFile,BufRead *.gemspec setlocal ft=ruby
 au BufNewFile,BufRead *.gemfile setlocal ft=ruby
+
+" Rubocop
+let g:vimrubocop_config='~/.vim/rubocop.yml'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

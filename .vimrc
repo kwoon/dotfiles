@@ -1,4 +1,37 @@
-call pathogen#infect()
+" Neobundle
+if has('vim_starting')
+  set nocompatible               " Be iMproved
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/neocomplcache.vim'
+NeoBundle '29decibel/codeschool-vim-theme'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'jistr/vim-nerdtree-tabs'
+NeoBundle 'cakebaker/scss-syntax.vim'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'tpope/vim-bundler'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-rvm'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'szw/vim-tags'
+
+
+" Standart .vimrc config
 set nocompatible
 set shell=/bin/zsh
 
@@ -11,6 +44,8 @@ set history=700
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
+
+NeoBundleCheck
 
 " Set to auto read when a file is changed from the outside
 " set autoread
@@ -223,6 +258,7 @@ map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
+" Mark word by cursor
 map <leader>e bve
 
 " NERDTree

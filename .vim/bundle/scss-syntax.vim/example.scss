@@ -668,6 +668,57 @@ $a: $b + $c; // issue #4: variables should be displayed with the same color
   }
 }
 
+.container { // issue #33, multiline comments are not recognized as comments
+  /*height: auto !important;
+  min-height: 100%;*/
+  background: #fff;
+}
+
+.button { // issue #34, functions as params should be recognized as functions
+  background-image: -webkit-linear-gradient(top, bottom, from(#933), to(#944));
+}
+
+.class { // issue #35 a) media block is not recognized
+  @media screen and (min-width: em(480)) {
+    a {
+      @extend .clearfix;
+    }
+  }
+}
+
+.class {
+  div {
+    a {
+      @extend .clearfix;
+    }
+  }
+}
+
+@media screen and (min-width: em(480)) {
+  // issue #35 c) comment inside media block is not recognized
+  a {
+    @extend .clearfix;
+  }
+}
+
+.class { // issue #35 b) @extend & @include are not recognized inside media block
+  @media screen and (min-width: em(480)) {
+    @extend .clearfix;
+    @include header-text;
+  }
+}
+
+.gradient { // issue #36, params are not consistently highlighted
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999));
+  background-image:  -webkit-gradien(linear, left top, right bottom);
+  background-image:              foo(linear, top left, bottom right);
+  fake-attribute:                foo(linear, left top, right bottom);
+  @include                       foo(linear, left top, left bottom, from(#444444), to(#999999));
+  border:           -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999));
+
+  background-image: -webkit-linear-gradient(top, #444444, #999999);
+}
+
 div {
   height: 10px;
 }

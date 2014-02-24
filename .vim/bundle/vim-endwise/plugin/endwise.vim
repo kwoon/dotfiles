@@ -13,8 +13,8 @@ augroup endwise " {{{1
   autocmd!
   autocmd FileType lua
         \ let b:endwise_addition = '\=submatch(0)=="{" ? "}" : "end"' |
-        \ let b:endwise_words = 'function,do,then' |
-        \ let b:endwise_pattern = '^\s*\zs\%(function\|do\|then\)\>\%(.*[^.:@$]\<end\>\)\@!\|\<then\|do\ze\%(\s*|.*|\)\=\s*$' |
+        \ let b:endwise_words = 'function,local\%(\s\+\)function,do,then' |
+        \ let b:endwise_pattern = '^\s*\zs\%(function\|local\s\+function\|do\|then\)\>\%(.*[^.:@$]\<end\>\)\@!\|\<then\|do\ze\%(\s*|.*|\)\=\s*$' |
         \ let b:endwise_syngroups = 'luaFunction,luaStatement,luaCond'
   autocmd FileType elixir
         \ let b:endwise_addition = '\=submatch(0)=="{" ? "}" : "end"' |
@@ -25,7 +25,7 @@ augroup endwise " {{{1
         \ let b:endwise_addition = '\=submatch(0)=="{" ? "}" : "end"' |
         \ let b:endwise_words = 'module,class,def,if,unless,case,while,until,begin,do' |
         \ let b:endwise_pattern = '^\(.*=\)\?\s*\zs\%(module\|class\|def\|if\|unless\|case\|while\|until\|for\|\|begin\)\>\%(.*[^.:@$]\<end\>\)\@!\|\<do\ze\%(\s*|.*|\)\=\s*$' |
-          \ let b:endwise_syngroups = 'rubyModule,rubyClass,rubyDefine,rubyControl,rubyConditional,rubyRepeat'
+        \ let b:endwise_syngroups = 'rubyModule,rubyClass,rubyDefine,rubyControl,rubyConditional,rubyRepeat'
   autocmd FileType sh,zsh
         \ let b:endwise_addition = '\=submatch(0)=="if" ? "fi" : submatch(0)=="case" ? "esac" : "done"' |
         \ let b:endwise_words = 'if,until,case,do' |
@@ -45,6 +45,11 @@ augroup endwise " {{{1
         \ let b:endwise_words = '#if,#ifdef,#ifndef' |
         \ let b:endwise_pattern = '^\s*#\%(if\|ifdef\|ifndef\)\s\+.\+$' |
         \ let b:endwise_syngroups = 'cPreCondit,cCppInWrapper,xdefaultsPreProc'
+  autocmd FileType objc
+        \ let b:endwise_addition = '@end' |
+        \ let b:endwise_words = '@interface,@implementation' |
+        \ let b:endwise_pattern = '\v^\s*\@%(interface|implementation)\s+.+$' |
+        \ let b:endwise_syngroups = 'objcObjDef'
   autocmd FileType matlab
         \ let b:endwise_addition = '\=submatch(0)=="{" ? "}" : "end"' |
         \ let b:endwise_words = 'function,if,for' |
@@ -66,7 +71,7 @@ if !exists('g:endwise_no_mappings')
   elseif maparg('<CR>','i') =~ '<CR>'
     exe "imap <script> <C-X><CR> ".maparg('<CR>','i')."<SID>AlwaysEnd"
     exe "imap <script> <CR>      ".maparg('<CR>','i')."<SID>DiscretionaryEnd"
-  elseif maparg('<CR>','i') =~ '<Plug>delimitMateCR'
+  elseif maparg('<CR>','i') =~ '<Plug>\w\+CR'
     exe "imap <C-X><CR> ".maparg('<CR>', 'i')."<Plug>AlwaysEnd"
     exe "imap <CR> ".maparg('<CR>', 'i')."<Plug>DiscretionaryEnd"
   else

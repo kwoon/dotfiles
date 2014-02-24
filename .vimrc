@@ -16,7 +16,6 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'godlygeek/tabular'
@@ -29,7 +28,11 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'szw/vim-tags'
-
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'vim-scripts/camelcasemotion'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'mattn/emmet-vim'
 
 " Standart .vimrc config
 set nocompatible

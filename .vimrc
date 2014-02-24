@@ -303,6 +303,7 @@ set guioptions-=T
 
 " Set language hightlights
 au BufNewFile,BufRead *.cap setlocal ft=ruby
+au BufNewFile,BufRead *.js.erb setlocal ft=javascript
 au BufNewFile,BufRead Capfile.* setlocal ft=ruby
 au BufNewFile,BufRead *.gemspec setlocal ft=ruby
 au BufNewFile,BufRead *.gemfile setlocal ft=ruby

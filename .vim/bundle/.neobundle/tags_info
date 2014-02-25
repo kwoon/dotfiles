@@ -1,10 +1,10 @@
 ack.vim
 auto-pairs
+calendar.vim
 camelcasemotion
 codeschool-vim-theme
 ctrlp.vim
 emmet-vim
-gundo.vim
 lightline.vim
 neobundle.vim
 neocomplcache.vim
@@ -25,3 +25,4 @@ vim-ruby
 vim-rvm
 vim-surround
 vim-tags
+vimproc

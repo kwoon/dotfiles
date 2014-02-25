@@ -8,12 +8,12 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache.vim'
+NeoBundle 'Shougo/vimproc.git'
 NeoBundle '29decibel/codeschool-vim-theme'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'sjl/gundo.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
@@ -33,6 +33,7 @@ NeoBundle 'ervandew/supertab'
 NeoBundle 'vim-scripts/camelcasemotion'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'itchyny/calendar.vim'
 
 " Standart .vimrc config
 set nocompatible
@@ -57,10 +58,6 @@ NeoBundleCheck
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
-
-" Fast saving
-nmap <leader>w :w!<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -110,6 +107,9 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
+" Show line numbers
+set number
+
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
@@ -133,9 +133,6 @@ if has("gui_running")
   set guioptions+=e
   set t_Co=256
   set guitablabel=%M\ %t
-  "set guifont=Monospace\ 10
-  "set guifont=Ubuntu\ Mono\ 12
-  "set guifont=SourceCodePro-Light\ 14
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -236,26 +233,6 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vimgrep searching and cope displaying
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv')<CR>
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
 map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
@@ -281,15 +258,8 @@ let g:rubycomplete_classes_in_global = 1
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_min_syntax_length = 1
 
-
-" Autogenerate tags
-let g:vim_tags_auto_generate = 1
-
-" Undolist
-nnoremap <F5> :GundoToggle<CR>
-let g:gundo_width = 60
-let g:gundo_preview_height = 40
-let g:gundo_right = 1
+" Emmet
+let g:user_emmet_leader_key='<C-Z>'
 
 " Fullscreen
 map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
@@ -308,8 +278,42 @@ au BufNewFile,BufRead Capfile.* setlocal ft=ruby
 au BufNewFile,BufRead *.gemspec setlocal ft=ruby
 au BufNewFile,BufRead *.gemfile setlocal ft=ruby
 
-" Rubocop
-let g:vimrubocop_config='~/.vim/rubocop.yml'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

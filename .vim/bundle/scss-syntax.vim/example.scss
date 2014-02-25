@@ -686,11 +686,10 @@ $a: $b + $c; // issue #4: variables should be displayed with the same color
   }
 }
 
-.class {
-  div {
-    a {
-      @extend .clearfix;
-    }
+.class { // issue #35 b) @extend & @include are not recognized inside media block
+  @media screen and (min-width: em(480)) {
+    @extend .clearfix;
+    @include header-text;
   }
 }
 
@@ -701,10 +700,14 @@ $a: $b + $c; // issue #4: variables should be displayed with the same color
   }
 }
 
-.class { // issue #35 b) @extend & @include are not recognized inside media block
-  @media screen and (min-width: em(480)) {
-    @extend .clearfix;
-    @include header-text;
+.foo { // issue #35 d) the two &:nth-child are not highlighted in the same way
+  &:nth-child(3n) {
+    @include bar(#000);
+  }
+  @media screen and (max-width: em(1024)) {
+    &:nth-child(2n) {
+      @include foobar;
+    }
   }
 }
 

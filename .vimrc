@@ -9,7 +9,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/vimproc.git'
-NeoBundle '29decibel/codeschool-vim-theme'
+" NeoBundle '29decibel/codeschool-vim-theme'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'jiangmiao/auto-pairs'
@@ -18,8 +18,6 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'cakebaker/scss-syntax.vim'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'tpope/vim-bundler'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails'
@@ -29,7 +27,6 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'ervandew/supertab'
 NeoBundle 'vim-scripts/camelcasemotion'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'
@@ -52,10 +49,9 @@ filetype indent on
 NeoBundleCheck
 
 " Set to auto read when a file is changed from the outside
-" set autoread
+set autoread
 
 " With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
@@ -124,8 +120,11 @@ set tm=500
 syntax enable
 
 set term=gnome-256color 
-set background=dark
-colorscheme codeschool
+let g:solarized_termcolors=256
+set background=light
+colorscheme solarized
+" set background=dark
+" colorscheme codeschool
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -181,13 +180,15 @@ set wrap "Wrap lines
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Smart way to move between tabs
-map <A-h> gT
-map <A-l> gt
+" map <A-h> gT
+" map <A-l> gt
 imap jj <Esc>
 
 " Smart way to move between splitted windows
 map <C-h> <C-w>h
 map <C-l> <C-w>l
+map <C-j> <C-w>j
+map <C-k> <C-w>k
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>
@@ -195,10 +196,13 @@ map <leader>bd :Bclose<cr>
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
 
+" Buffers List
+map <C-e> :CtrlPBuffer<cr>
+
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
-map <A-w>      :tabclose<cr>
+map <leader>tq :tabclose<cr>
 map <leader>tm :tabmove
 
 " Specify the behavior when switching between buffers 
@@ -242,7 +246,7 @@ map <leader>p :cp<cr>
 map <leader>e bve
 
 " NERDTree
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <Leader>n :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<CR>
 let g:NERDTreeWinSize = 55
 

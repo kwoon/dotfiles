@@ -2,8 +2,10 @@ ack.vim
 auto-pairs
 calendar.vim
 camelcasemotion
+codeschool-vim-theme
 ctrlp.vim
 emmet-vim
+jellybeans.vim
 lightline.vim
 neobundle.vim
 neocomplcache.vim
@@ -13,12 +15,14 @@ tcomment_vim
 vim-colors-solarized
 vim-endwise
 vim-fugitive
+vim-javascript
 vim-multiple-cursors
 vim-nerdtree-tabs
 vim-rails
 vim-repeat
 vim-ruby
 vim-rvm
+vim-slim
 vim-surround
 vim-tags
 vimproc

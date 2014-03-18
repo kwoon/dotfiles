@@ -9,15 +9,14 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/vimproc.git'
-" NeoBundle '29decibel/codeschool-vim-theme'
-NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'mileszs/ack.vim'
-NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'cakebaker/scss-syntax.vim'
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails'
@@ -29,8 +28,13 @@ NeoBundle 'szw/vim-tags'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/camelcasemotion'
 NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'mattn/emmet-vim'
+NeoBundle 'mattn/emmet-vim'               " zen codding
 NeoBundle 'itchyny/calendar.vim'
+NeoBundle 'pangloss/vim-javascript.git'
+" themes
+NeoBundle '29decibel/codeschool-vim-theme'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'nanotech/jellybeans.vim'
 
 " Standart .vimrc config
 set nocompatible
@@ -120,11 +124,12 @@ set tm=500
 syntax enable
 
 set term=gnome-256color 
-let g:solarized_termcolors=256
-set background=light
-colorscheme solarized
-" set background=dark
+" let g:solarized_termcolors=256
+" set background=light
+" colorscheme solarized
 " colorscheme codeschool
+set background=dark
+colorscheme jellybeans
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -190,6 +195,9 @@ map <C-l> <C-w>l
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 
+" Fast save
+map <C-s> :w<cr>
+
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 
@@ -246,12 +254,13 @@ map <leader>p :cp<cr>
 map <leader>e bve
 
 " NERDTree
-map <Leader>n :NERDTreeToggle<CR>
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
 map <leader>r :NERDTreeFind<CR>
 let g:NERDTreeWinSize = 55
 
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_match_window = 'top,order:btt,min:5,max:15,results:15'
 
 " Autocomplete
 set omnifunc=rubycomplete#Complete 
@@ -276,9 +285,9 @@ set guioptions-=m
 set guioptions-=T 
 
 " Set language hightlights
-au BufNewFile,BufRead *.cap setlocal ft=ruby
 au BufNewFile,BufRead *.js.erb setlocal ft=javascript
 au BufNewFile,BufRead Capfile.* setlocal ft=ruby
+au BufNewFile,BufRead *.cap setlocal ft=ruby
 au BufNewFile,BufRead *.gemspec setlocal ft=ruby
 au BufNewFile,BufRead *.gemfile setlocal ft=ruby
 

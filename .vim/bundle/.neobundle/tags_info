@@ -5,17 +5,20 @@ camelcasemotion
 codeschool-vim-theme
 ctrlp.vim
 emmet-vim
+googletasks-vim
 jellybeans.vim
 lightline.vim
 neobundle.vim
 neocomplcache.vim
 nerdtree
 scss-syntax.vim
+tabular
 tcomment_vim
 vim-colors-solarized
 vim-endwise
 vim-fugitive
 vim-javascript
+vim-jsbeautify
 vim-multiple-cursors
 vim-nerdtree-tabs
 vim-rails
@@ -26,3 +29,4 @@ vim-slim
 vim-surround
 vim-tags
 vimproc
+webapi-vim

@@ -24,6 +24,7 @@ NeoBundle 'tpope/vim-rvm'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'godlygeek/tabular'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/camelcasemotion'
@@ -31,6 +32,9 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'               " zen codding
 NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'pangloss/vim-javascript.git'
+NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/googletasks-vim'
 " themes
 NeoBundle '29decibel/codeschool-vim-theme'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -195,9 +199,6 @@ map <C-l> <C-w>l
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 
-" Fast save
-map <C-s> :w<cr>
-
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 
@@ -291,8 +292,22 @@ au BufNewFile,BufRead *.cap setlocal ft=ruby
 au BufNewFile,BufRead *.gemspec setlocal ft=ruby
 au BufNewFile,BufRead *.gemfile setlocal ft=ruby
 
+" Set beauity js
+map <C-b> :call JsBeautify()<cr>
 
+" Camelcasemotion
+map w <Plug>CamelCaseMotion_w
+map b <Plug>CamelCaseMotion_b
+map e <Plug>CamelCaseMotion_e
+sunmap w
+sunmap b
+sunmap e
 
+" Spec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 
 
@@ -517,3 +532,16 @@ endfunction
 let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
+
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction

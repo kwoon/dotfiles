@@ -19,22 +19,19 @@ NeoBundle 'slim-template/vim-slim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-rvm'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/camelcasemotion'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'               " zen codding
-NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'pangloss/vim-javascript.git'
 NeoBundle 'maksimr/vim-jsbeautify'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/googletasks-vim'
 " themes
 NeoBundle '29decibel/codeschool-vim-theme'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -201,6 +198,10 @@ map <C-k> <C-w>k
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>
+
+" Save
+map <leader>w :noa :w<cr>
+" map <C-w> :noa :w<cr>
 
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
@@ -520,10 +521,6 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
   return lightline#statusline(0)
 endfunction
 
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
 function! s:syntastic()
   SyntasticCheck
   call lightline#update()

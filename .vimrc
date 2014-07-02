@@ -7,7 +7,10 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neocomplcache.vim'
+" NeoBundle 'Shougo/neocomplcache.vim'
+" NeoBundle 'ervandew/supertab'
+" NeoBundle 'Valloric/YouCompleteMe'
+" NeoBundle 'AutoComplPop'
 NeoBundle 'Shougo/vimproc.git'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'kien/ctrlp.vim'
@@ -25,16 +28,19 @@ NeoBundle 'tpope/vim-rvm'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'godlygeek/tabular'
-NeoBundle 'szw/vim-tags'
+" NeoBundle 'szw/vim-tags'                  " don't work :(
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'xolox/vim-easytags'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/camelcasemotion'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'               " zen codding
 NeoBundle 'pangloss/vim-javascript.git'
 NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'thoughtbot/vim-rspec'
+NeoBundle 'takac/vim-fontmanager'
 " themes
 NeoBundle '29decibel/codeschool-vim-theme'
-NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
 
 " Standart .vimrc config
@@ -107,6 +113,7 @@ set magic
 set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
+" let loaded_matchparen = 1 
 
 " Show line numbers
 set number
@@ -117,7 +124,6 @@ set novisualbell
 set t_vb=
 set tm=500
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -125,12 +131,12 @@ set tm=500
 syntax enable
 
 set term=gnome-256color 
-" let g:solarized_termcolors=256
 " set background=light
-" colorscheme solarized
 " colorscheme codeschool
 set background=dark
 colorscheme jellybeans
+
+set guifont=DejaVu\ Sans\ Mono\ 9 
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -269,9 +275,9 @@ set omnifunc=rubycomplete#Complete
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1 
 
-" Newocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_min_syntax_length = 1
+" " Newocomplcache
+" let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_min_syntax_length = 1
 
 " Emmet
 let g:user_emmet_leader_key='<C-Z>'
@@ -309,9 +315,6 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
-
-
-
 
 
 
@@ -542,3 +545,9 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
+
+
+
+
+" Say no to tabs !!! HACK!!!
+set showtabline=0

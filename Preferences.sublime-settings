@@ -1,0 +1,45 @@
+{
+	"color_scheme": "Packages/Railscasts Extended/Railscasts Extended.tmTheme",
+	"font_size": 9,
+	"ignored_packages": [],
+	"theme": "Soda Dark.sublime-theme",
+	"file_exclude_patterns":
+	[
+		"*.pyc",
+		"*.pyo",
+		"*.exe",
+		"*.dll",
+		"*.obj",
+		"*.o",
+		"*.a",
+		"*.lib",
+		"*.so",
+		"*.dylib",
+		"*.ncb",
+		"*.sdf",
+		"*.suo",
+		"*.pdb",
+		"*.idb",
+		".DS_Store",
+		"*.class",
+		"*.psd",
+		"*.db",
+		".gitignore",
+		".rvmrc",
+		"tags",
+		".gitkeep",
+		".keep"
+	],
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".git",
+		".hg",
+		"CVS",
+		".idea",
+		".vagrant",
+		".chef",
+		"log",
+		"tmp"
+	]
+}

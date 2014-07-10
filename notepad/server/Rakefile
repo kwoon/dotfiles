@@ -1,3 +1,0 @@
-require_relative 'db/config'
-
-Dir.glob('lib/tasks/*.rake').each { |r| load r }

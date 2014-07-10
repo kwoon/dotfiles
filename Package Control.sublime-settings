@@ -1,13 +1,12 @@
 {
 	"installed_packages":
 	[
+		"CTags",
 		"Package Control",
 		"RailsCasts Colour Scheme",
 		"Railscasts Extended",
-		"Solarized Color Scheme",
-		"SublimeCodeIntel",
-		"Surround",
+		"Simple Rails Navigator",
 		"Theme - Soda",
-		"Theme - Sodarized"
+		"Theme - Spacegray"
 	]
 }

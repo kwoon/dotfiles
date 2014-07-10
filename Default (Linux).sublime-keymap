@@ -6,13 +6,6 @@
 			{ "key": "setting.is_widget", "operand": false }
 		]
 	},
-	{ "keys": ["g", "t"], "command": "next_view", // ?????????????????
-		"context":
-		[
-			{ "key": "setting.command_mode", "operand": true },
-			{ "key": "setting.is_widget", "operand": true }
-		]
-	},
 	{ "keys": ["ctrl+tab"], "command": "next_view" },
 	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
 	{ "keys": ["alt+/"], "command": "auto_complete" },
@@ -20,4 +13,5 @@
 	{ "keys": ["ctrl+j"], "command": "move", "args": {"by": "lines", "forward": true} },
 	{ "keys": ["ctrl+h"], "command": "move", "args": {"by": "characters", "forward": false} },
 	{ "keys": ["ctrl+l"], "command": "move", "args": {"by": "characters", "forward": true} }
+
 ]

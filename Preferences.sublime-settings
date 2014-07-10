@@ -1,8 +1,5 @@
 {
 	"color_scheme": "Packages/Railscasts Extended/Railscasts Extended.tmTheme",
-	"font_size": 9,
-	"ignored_packages": [],
-	"theme": "Soda Dark.sublime-theme",
 	"file_exclude_patterns":
 	[
 		"*.pyc",
@@ -41,5 +38,11 @@
 		".chef",
 		"log",
 		"tmp"
-	]
+	],
+	"font_size": 9,
+	"ignored_packages":
+	[
+	],
+	"theme": "Soda Dark.sublime-theme",
+	"vintage_start_in_command_mode": true
 }

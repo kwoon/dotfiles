@@ -28,19 +28,13 @@ NeoBundle 'tpope/vim-rvm'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'godlygeek/tabular'
-" NeoBundle 'szw/vim-tags'                  " don't work :(
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-easytags'
+" NeoBundle 'craigemery/vim-autotag'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/camelcasemotion'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'mattn/emmet-vim'               " zen codding
-NeoBundle 'pangloss/vim-javascript.git'
-NeoBundle 'maksimr/vim-jsbeautify'
-NeoBundle 'thoughtbot/vim-rspec'
-NeoBundle 'takac/vim-fontmanager'
-" themes
-NeoBundle '29decibel/codeschool-vim-theme'
+" NeoBundle 'pangloss/vim-javascript.git'
+" NeoBundle 'maksimr/vim-jsbeautify'
 NeoBundle 'nanotech/jellybeans.vim'
 
 " Standart .vimrc config
@@ -103,17 +97,20 @@ set hlsearch
 " Makes search act like search in modern browsers
 set incsearch
 
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
 " For regular expressions turn magic on
 set magic
 
-" Show matching brackets when text indicator is over them
-set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
-" let loaded_matchparen = 1 
+
+" Make terminal more speedy
+let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
+set noshowmatch         " Don't match parentheses/brackets
+set nocursorline        " Don't paint cursor line
+set nocursorcolumn      " Don't paint cursor column
+set lazyredraw          " Wait to redraw
+set scrolljump=8        " Scroll 8 lines at a time at bottom/top
+let html_no_rendering=1 " Don't render italic, bold, links in HTML
 
 " Show line numbers
 set number
@@ -131,8 +128,6 @@ set tm=500
 syntax enable
 
 set term=gnome-256color 
-" set background=light
-" colorscheme codeschool
 set background=dark
 colorscheme jellybeans
 
@@ -140,9 +135,9 @@ set guifont=DejaVu\ Sans\ Mono\ 9
 
 " Set extra options when running in GUI mode
 if has("gui_running")
+  set t_Co=256
   set guioptions-=T
   set guioptions+=e
-  set t_Co=256
   set guitablabel=%M\ %t
 endif
 
@@ -215,12 +210,6 @@ map <leader>ba :1,1000 bd!<cr>
 " Buffers List
 map <C-e> :CtrlPBuffer<cr>
 
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tq :tabclose<cr>
-map <leader>tm :tabmove
-
 " Specify the behavior when switching between buffers 
 try
   set switchbuf=useopen,usetab,newtab
@@ -253,11 +242,6 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
 " Mark word by cursor
 map <leader>e bve
 
@@ -279,9 +263,6 @@ let g:rubycomplete_classes_in_global = 1
 " let g:neocomplcache_enable_at_startup = 1
 " let g:neocomplcache_min_syntax_length = 1
 
-" Emmet
-let g:user_emmet_leader_key='<C-Z>'
-
 " Fullscreen
 map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
 set guioptions-=L
@@ -299,9 +280,6 @@ au BufNewFile,BufRead *.cap setlocal ft=ruby
 au BufNewFile,BufRead *.gemspec setlocal ft=ruby
 au BufNewFile,BufRead *.gemfile setlocal ft=ruby
 
-" Set beauity js
-map <C-b> :call JsBeautify()<cr>
-
 " Camelcasemotion
 map w <Plug>CamelCaseMotion_w
 map b <Plug>CamelCaseMotion_b
@@ -309,30 +287,6 @@ map e <Plug>CamelCaseMotion_e
 sunmap w
 sunmap b
 sunmap e
-
-" Spec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

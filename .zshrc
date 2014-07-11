@@ -20,6 +20,7 @@ ZSH_THEME="norm"
 # Uncomment to change how often before auto-updates occur? (in days)
 export UPDATE_ZSH_DAYS=1
 export TERM=xterm-256color
+export PATH=/usr/local/bin:$PATH
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"

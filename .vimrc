@@ -7,264 +7,71 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-" NeoBundle 'Shougo/neocomplcache.vim'
-" NeoBundle 'ervandew/supertab'
-" NeoBundle 'Valloric/YouCompleteMe'
-" NeoBundle 'AutoComplPop'
-NeoBundle 'Shougo/vimproc.git'
-NeoBundle 'mileszs/ack.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs'
-NeoBundle 'cakebaker/scss-syntax.vim'
-NeoBundle 'slim-template/vim-slim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-rvm'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'godlygeek/tabular'
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-easytags'
-" NeoBundle 'craigemery/vim-autotag'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/camelcasemotion'
-" NeoBundle 'pangloss/vim-javascript.git'
-" NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'pangloss/vim-javascript.git'
 NeoBundle 'nanotech/jellybeans.vim'
-
-" Standart .vimrc config
-set nocompatible
-set shell=/bin/zsh
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
-set history=700
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
 NeoBundleCheck
 
-" Set to auto read when a file is changed from the outside
-set autoread
+filetype plugin on
+filetype indent on
+syntax enable
 
-" With a map leader it's possible to do extra key combinations
 let mapleader = ","
 let g:mapleader = ","
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the cursor - when moving vertically using j/k
+set nocompatible
+set shell=/bin/zsh
+set history=700
+set autoread
 set so=7
-
-" Turn on the WiLd menu
 set wildmenu
-
-" Ignore compiled files
-set wildignore=*.o,*~,*.pyc
-
-"Always show current position
 set ruler
-
-" Height of the command bar
 set cmdheight=2
 
-" A buffer becomes hidden when it is abandoned
-set hid
-
-" Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
-
-" Ignore case when searching
 set ignorecase
-
-" When searching try to be smart about cases 
 set smartcase
-
-" Highlight search results
 set hlsearch
-
-" Makes search act like search in modern browsers
 set incsearch
-
-" For regular expressions turn magic on
 set magic
-
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
-" Make terminal more speedy
-let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
+set mat=2 " How many tenths of a second to blink when matching brackets
+set number
 set noshowmatch         " Don't match parentheses/brackets
-set nocursorline        " Don't paint cursor line
-set nocursorcolumn      " Don't paint cursor column
 set lazyredraw          " Wait to redraw
 set scrolljump=8        " Scroll 8 lines at a time at bottom/top
-let html_no_rendering=1 " Don't render italic, bold, links in HTML
-
-" Show line numbers
-set number
-
-" No annoying sound on errors
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable syntax highlighting
-syntax enable
-
 set term=gnome-256color 
 set background=dark
-colorscheme jellybeans
-
 set guifont=DejaVu\ Sans\ Mono\ 9 
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-  set t_Co=256
-  set guioptions-=T
-  set guioptions+=e
-  set guitablabel=%M\ %t
-endif
-
-" Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
-
-" Use Unix as the standard file type
 set ffs=unix,dos,mac
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowb
 set noswapfile
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
 set expandtab
-
-" Be smart when using tabs ;)
 set smarttab
-
-" 1 tab == 2 spaces
 set shiftwidth=2
 set tabstop=2
-autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-autocmd Filetype html setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
-autocmd Filetype json setlocal ts=4 sts=4 sw=4
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Smart way to move between tabs
-" map <A-h> gT
-" map <A-l> gt
-imap jj <Esc>
-
-" Smart way to move between splitted windows
-map <C-h> <C-w>h
-map <C-l> <C-w>l
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-
-" Close the current buffer
-map <leader>bd :Bclose<cr>
-
-" Save
-map <leader>w :noa :w<cr>
-" map <C-w> :noa :w<cr>
-
-" Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
-
-" Buffers List
-map <C-e> :CtrlPBuffer<cr>
-
-" Specify the behavior when switching between buffers 
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
-
-" Return to last edit position when opening files (You want this!)
- autocmd BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
-" Remember info about open buffers on close
+set lbr
+set tw=500
 set viminfo^=%
-
-
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
-" Always show the status line
 set laststatus=2
-
-" Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-    
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap VIM 0 to first non-blank character
-map 0 ^
-
-" Mark word by cursor
-map <leader>e bve
-
-" NERDTree
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
-map <leader>r :NERDTreeFind<CR>
-let g:NERDTreeWinSize = 55
-
-" CtrlP
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_match_window = 'top,order:btt,min:5,max:15,results:15'
-
-" Autocomplete
-set omnifunc=rubycomplete#Complete 
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1 
-
-" " Newocomplcache
-" let g:neocomplcache_enable_at_startup = 1
-" let g:neocomplcache_min_syntax_length = 1
-
-" Fullscreen
-map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
 set guioptions-=L
 set guioptions-=l 
 set guioptions-=R 
@@ -273,12 +80,44 @@ set guioptions-=b
 set guioptions-=m 
 set guioptions-=T 
 
-" Set language hightlights
+let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
+let html_no_rendering=1 " Don't render italic, bold, links in HTML
+
+colorscheme jellybeans
+
+imap jj <Esc>
+map <C-h> <C-w>h
+map <C-l> <C-w>l
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-e> :CtrlPBuffer<cr>
+map 0 ^
+map <leader>bd :Bclose<cr>
+map <leader>w :noa :w<cr>
+map <leader>ba :1,1000 bd!<cr>
+map <leader>e bve
+map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype json setlocal ts=4 sts=4 sw=4
 au BufNewFile,BufRead *.js.erb setlocal ft=javascript
 au BufNewFile,BufRead Capfile.* setlocal ft=ruby
 au BufNewFile,BufRead *.cap setlocal ft=ruby
 au BufNewFile,BufRead *.gemspec setlocal ft=ruby
 au BufNewFile,BufRead *.gemfile setlocal ft=ruby
+    
+" Plugin Settings
+
+" NERDTree
+map <Leader>n :NERDTreeToggle<CR>
+map <leader>r :NERDTreeFind<CR>
+let g:NERDTreeWinSize = 55
+
+" CtrlP
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_match_window = 'top,order:btt,min:5,max:15,results:15'
 
 " Camelcasemotion
 map w <Plug>CamelCaseMotion_w
@@ -288,19 +127,30 @@ sunmap w
 sunmap b
 sunmap e
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \   'ctrlpmark': 'CtrlPMark',
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error',
+      \ },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -361,31 +211,7 @@ function! <SID>BufcloseCloseIt()
   endif
 endfunction
 
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'MyFugitive',
-      \   'filename': 'MyFilename',
-      \   'fileformat': 'MyFileformat',
-      \   'filetype': 'MyFiletype',
-      \   'fileencoding': 'MyFileencoding',
-      \   'mode': 'MyMode',
-      \   'ctrlpmark': 'CtrlPMark',
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
-      \ },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
-
+" Function for Lightline
 function! MyModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction

@@ -10,6 +10,7 @@ ZSH_THEME="norm"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias uzbl='uzbl-tabbed'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -20,7 +21,9 @@ ZSH_THEME="norm"
 # Uncomment to change how often before auto-updates occur? (in days)
 export UPDATE_ZSH_DAYS=1
 export TERM=xterm-256color
-export PATH=/usr/local/bin:$PATH
+# export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/local/bin:$PATH
+# export PATH=$HOME/.rvm/rubies/default/bin:$PATH
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"

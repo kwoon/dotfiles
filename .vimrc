@@ -19,6 +19,10 @@ NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/camelcasemotion'
 NeoBundle 'pangloss/vim-javascript.git'
 NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'tpope/vim-haml'
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'mattn/emmet-vim'
 NeoBundleCheck
 
 filetype plugin on
@@ -52,7 +56,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-set term=gnome-256color 
 set background=dark
 set guifont=DejaVu\ Sans\ Mono\ 9 
 set encoding=utf8
@@ -79,6 +82,13 @@ set guioptions-=r
 set guioptions-=b 
 set guioptions-=m 
 set guioptions-=T 
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+
+if !has("gui_running")
+  set term=gnome-256color 
+endif
 
 let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
 let html_no_rendering=1 " Don't render italic, bold, links in HTML
@@ -96,6 +106,7 @@ map <leader>bd :Bclose<cr>
 map <leader>w :noa :w<cr>
 map <leader>ba :1,1000 bd!<cr>
 map <leader>e bve
+map <leader>b :noh<CR>
 map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
 
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
@@ -103,6 +114,7 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype json setlocal ts=4 sts=4 sw=4
 au BufNewFile,BufRead *.js.erb setlocal ft=javascript
+au BufNewFile,BufRead *.js.haml setlocal ft=javascript
 au BufNewFile,BufRead Capfile.* setlocal ft=ruby
 au BufNewFile,BufRead *.cap setlocal ft=ruby
 au BufNewFile,BufRead *.gemspec setlocal ft=ruby
@@ -126,6 +138,9 @@ map e <Plug>CamelCaseMotion_e
 sunmap w
 sunmap b
 sunmap e
+
+" Emmet
+let g:user_emmet_leader_key='<C-Z>'
 
 " Lightline
 let g:lightline = {
@@ -151,6 +166,10 @@ let g:lightline = {
       \ },
       \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
+" ag by https://github.com/ggreer/the_silver_searcher 
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -325,6 +344,18 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 
 

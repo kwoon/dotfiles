@@ -1,2 +1,4 @@
-wp https://en.wikipedia.org/w/index.php?search=XXX&title=Special:Search
 gg https://google.com/search?q=XXX
+gte https://translate.google.com/#auto/en/XXX
+gtr https://translate.google.com/#auto/ru/XXX
+wp https://en.wikipedia.org/w/index.php?search=XXX&title=Special:Search

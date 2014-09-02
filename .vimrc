@@ -25,6 +25,7 @@ NeoBundle 'tpope/vim-bundler'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'vim-ruby-debugger.git'
 NeoBundleCheck
 
 filetype plugin on

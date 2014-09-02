@@ -10,7 +10,6 @@ ZSH_THEME="norm"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias uzbl='uzbl-tabbed'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"

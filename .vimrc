@@ -22,10 +22,14 @@ NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-bundler'
+NeoBundle 'tpope/tpope/vim-fugitive'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'junegunn/vim-easy-align'
+NeoBundle 'dart-lang/dart-vim-plugin'
 NeoBundleCheck
 
 filetype plugin on
@@ -60,7 +64,8 @@ set novisualbell
 set t_vb=
 set tm=500
 set background=dark
-set guifont=DejaVu\ Sans\ Mono\ 9 
+" set guifont=DejaVu\ Sans\ Mono\ 8 
+set guifont=Monospace\ 9
 set encoding=utf8
 set ffs=unix,dos,mac
 set nobackup
@@ -77,6 +82,7 @@ set lbr
 set tw=500
 set viminfo^=%
 set laststatus=2
+set colorcolumn=100
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 set guioptions-=L
 set guioptions-=l 
@@ -88,6 +94,7 @@ set guioptions-=T
 set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
+" set clipboard=unnamed
 
 if !has("gui_running")
   set term=gnome-256color 
@@ -145,6 +152,11 @@ sunmap e
 " Emmet
 let g:user_emmet_leader_key='<C-Z>'
 
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+nmap <Leader>a <Plug>(EasyAlign)
+
 " Lightline
 let g:lightline = {
       \ 'colorscheme': 'wombat',
@@ -169,6 +181,7 @@ let g:lightline = {
       \ },
       \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
+
 " ag by https://github.com/ggreer/the_silver_searcher 
 " bind K to grep word under cursor
 " nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -366,3 +379,4 @@ endfunction
 
 " Say no to tabs !!! HACK!!!
 set showtabline=0
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz

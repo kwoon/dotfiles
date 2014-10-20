@@ -13,7 +13,7 @@ DISABLE_AUTO_TITLE="true"
 DISABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git rvm rails lol debian bundler zeus vagrant npm)
+plugins=(git rvm rails lol debian bundler zeus vagrant)
 
 source $ZSH/oh-my-zsh.sh
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 

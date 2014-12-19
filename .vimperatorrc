@@ -23,6 +23,5 @@ set "editor=urxvt -geometry 120x40 -e vim -f"
 set nextpattern=bnext,n.*chste,vorw.*rts,^>$,^>>,^Â»$
 set previouspattern=bprev,^zur.*ck,^<$,^<<,^Â«$
 set runtimepath=/home/kwoon/.vimperator
-set gui=nonavigation
 
 " vim: set ft=vimperator:

@@ -4,7 +4,7 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'kien/ctrlp.vim'
@@ -14,23 +14,27 @@ NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'godlygeek/tabular'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/camelcasemotion'
 NeoBundle 'pangloss/vim-javascript.git'
 NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'zefei/cake16'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-bundler'
-NeoBundle 'tpope/tpope/vim-fugitive'
 NeoBundle 'tpope/vim-haml'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'slim-template/vim-slim'
+NeoBundle 'evidens/vim-twig' " TODO Remove after end of work
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'rking/ag.vim'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'dart-lang/dart-vim-plugin'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'burnettk/vim-angular'
+NeoBundle 'mhinz/vim-startify'
 NeoBundleCheck
+
+call neobundle#end()
 
 filetype plugin on
 filetype indent on
@@ -63,7 +67,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-set background=dark
 " set guifont=DejaVu\ Sans\ Mono\ 8 
 set guifont=Monospace\ 9
 set encoding=utf8
@@ -82,7 +85,6 @@ set lbr
 set tw=500
 set viminfo^=%
 set laststatus=2
-set colorcolumn=100
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 set guioptions-=L
 set guioptions-=l 
@@ -98,11 +100,14 @@ set imsearch=0
 
 if !has("gui_running")
   set term=gnome-256color 
+  set t_Co=256
 endif
 
-let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
+
+" let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
 let html_no_rendering=1 " Don't render italic, bold, links in HTML
 
+set background=dark
 colorscheme jellybeans
 
 imap jj <Esc>
@@ -117,12 +122,15 @@ map <leader>w :noa :w<cr>
 map <leader>ba :1,1000 bd!<cr>
 map <leader>e bve
 map <leader>b :noh<CR>
+map <silent> <F8> :call system("/usr/bin/ctags-exuberant -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)")<CR>
+map <silent> <F9> :call system("/usr/bin/ctags-exuberant -R --languages=js --exclude=.git ./app")<CR>
 map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
 
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype json setlocal ts=4 sts=4 sw=4
+autocmd Filetype twig setlocal ts=4 sts=4 sw=4
 au BufNewFile,BufRead *.js.erb setlocal ft=javascript
 au BufNewFile,BufRead *.js.haml setlocal ft=javascript
 au BufNewFile,BufRead Capfile.* setlocal ft=ruby
@@ -130,6 +138,13 @@ au BufNewFile,BufRead *.cap setlocal ft=ruby
 au BufNewFile,BufRead *.gemspec setlocal ft=ruby
 au BufNewFile,BufRead *.gemfile setlocal ft=ruby
     
+function Func2X11()
+:call system('xclip -selection c', @r)
+endfunction
+vnoremap <F9> "ry:call Func2X11()<cr>
+vnoremap <m-c> "ry:call Func2X11()<cr>
+vnoremap <ESC-c> "ry:call Func2X11()<cr>
+
 " Plugin Settings
 
 " NERDTree
@@ -137,9 +152,12 @@ map <Leader>n :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<CR>
 let g:NERDTreeWinSize = 55
 
+" Startyfy
+let g:startify_session_persistence = 1
+
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_match_window = 'top,order:btt,min:5,max:15,results:15'
+let g:ctrlp_match_window = 'bottom,order:ttb,min:5,max:15,results:15'
 
 " Camelcasemotion
 map w <Plug>CamelCaseMotion_w
@@ -185,7 +203,7 @@ let g:lightline = {
 " ag by https://github.com/ggreer/the_silver_searcher 
 " bind K to grep word under cursor
 " nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-vmap \ y:Ag <C-R>"<CR>
+vmap \ y:Ag -U <C-R>"<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

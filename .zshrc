@@ -1,5 +1,4 @@
 ZSH=$HOME/.oh-my-zsh
-
 ZSH_THEME="norm"
 
 export UPDATE_ZSH_DAYS=1
@@ -7,6 +6,7 @@ export TERM=xterm-256color
 export NODE_PATH=$HOME/.local/lib/node_modules
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.rvm/rubies/default/bin:$PATH
+export GOPATH=$HOME/Applications/go
 export EDITOR=vim
 
 DISABLE_AUTO_TITLE="true"

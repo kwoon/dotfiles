@@ -31,7 +31,6 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'burnettk/vim-angular'
-NeoBundle 'mhinz/vim-startify'
 NeoBundleCheck
 
 call neobundle#end()
@@ -151,9 +150,6 @@ vnoremap <ESC-c> "ry:call Func2X11()<cr>
 map <Leader>n :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<CR>
 let g:NERDTreeWinSize = 55
-
-" Startyfy
-let g:startify_session_persistence = 1
 
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim

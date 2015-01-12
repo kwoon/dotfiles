@@ -26,7 +26,7 @@ NeoBundle 'tpope/vim-haml'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'slim-template/vim-slim'
-NeoBundle 'evidens/vim-twig' " TODO Remove after end of work
+NeoBundle 'evidens/vim-twig'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/syntastic'
@@ -98,8 +98,8 @@ set imsearch=0
 " set clipboard=unnamed
 
 if !has("gui_running")
-  set term=gnome-256color 
   set t_Co=256
+  set term=rxvt-unicode-256color 
 endif
 
 
@@ -107,6 +107,7 @@ endif
 let html_no_rendering=1 " Don't render italic, bold, links in HTML
 
 set background=dark
+" colorscheme default
 colorscheme jellybeans
 
 imap jj <Esc>
@@ -392,5 +393,5 @@ endfunction
 
 
 " Say no to tabs !!! HACK!!!
-set showtabline=0
+" set showtabline=0
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz

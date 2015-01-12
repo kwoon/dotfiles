@@ -8,6 +8,7 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.rvm/rubies/default/bin:$PATH
 export GOPATH=$HOME/Applications/go
 export EDITOR=vim
+export TERM=rxvt-unicode-256color
 
 DISABLE_AUTO_TITLE="true"
 DISABLE_CORRECTION="true"

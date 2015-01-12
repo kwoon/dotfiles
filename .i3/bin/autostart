@@ -1,0 +1,3 @@
+rofi &
+xset r rate 200 25 &
+setxkbmap -option grp:caps_toggle us,ru &

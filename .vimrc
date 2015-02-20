@@ -17,8 +17,9 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/camelcasemotion'
 NeoBundle 'pangloss/vim-javascript.git'
+NeoBundle 'einars/js-beautify'
+NeoBundle 'Chiel92/vim-autoformat'
 NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'zefei/cake16'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-bundler'
@@ -31,6 +32,7 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'burnettk/vim-angular'
+NeoBundle 'wting/rust.vim'
 NeoBundleCheck
 
 call neobundle#end()
@@ -109,6 +111,7 @@ let html_no_rendering=1 " Don't render italic, bold, links in HTML
 set background=dark
 " colorscheme default
 colorscheme jellybeans
+hi NonText ctermfg=bg
 
 imap jj <Esc>
 map <C-h> <C-w>h
@@ -155,6 +158,12 @@ let g:NERDTreeWinSize = 55
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_match_window = 'bottom,order:ttb,min:5,max:15,results:15'
+let g:ctrlp_user_command = 'ag %s -iUf --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ -g ""'
 
 " Camelcasemotion
 map w <Plug>CamelCaseMotion_w
@@ -200,7 +209,7 @@ let g:lightline = {
 " ag by https://github.com/ggreer/the_silver_searcher 
 " bind K to grep word under cursor
 " nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-vmap \ y:Ag -U <C-R>"<CR>
+vmap \ y:Ag -Uf "<C-R>""<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

@@ -1,13 +1,17 @@
+if !1 | finish | endif
+
 " Neobundle
 if has('vim_starting')
-  set nocompatible               " Be iMproved
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jiangmiao/auto-pairs'
@@ -16,23 +20,41 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/camelcasemotion'
-NeoBundle 'pangloss/vim-javascript.git'
-NeoBundle 'einars/js-beautify'
-NeoBundle 'Chiel92/vim-autoformat'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'wting/rust.vim'
+
+" Snippets
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'matthewsimo/angular-vim-snippets'
+
+" Search
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'rking/ag.vim'
+
+" Themes
 NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'zefei/cake16'
+
+" Ruby
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-bundler'
+
+" Javascript
+NeoBundle 'pangloss/vim-javascript.git'
+NeoBundle 'burnettk/vim-angular'
+NeoBundle 'mxw/vim-jsx'
+
+" HTML
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-haml'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'evidens/vim-twig'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'burnettk/vim-angular'
-NeoBundle 'wting/rust.vim'
+
+
 NeoBundleCheck
 
 call neobundle#end()
@@ -58,6 +80,7 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
+set autoindent
 set magic
 set mat=2 " How many tenths of a second to blink when matching brackets
 set number
@@ -97,7 +120,7 @@ set guioptions-=T
 set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
-" set clipboard=unnamed
+set clipboard=unnamed
 
 if !has("gui_running")
   set t_Co=256
@@ -158,11 +181,9 @@ let g:NERDTreeWinSize = 55
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_match_window = 'bottom,order:ttb,min:5,max:15,results:15'
-let g:ctrlp_user_command = 'ag %s -iUf --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup
+      \ --ignore-dir node_modules
+      \ --ignore-dir bower_components
       \ -g ""'
 
 " Camelcasemotion
@@ -176,10 +197,25 @@ sunmap e
 " Emmet
 let g:user_emmet_leader_key='<C-Z>'
 
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-nmap <Leader>a <Plug>(EasyAlign)
+" Snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/angular-vim-snippets/snippets'
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Lightline
 let g:lightline = {
